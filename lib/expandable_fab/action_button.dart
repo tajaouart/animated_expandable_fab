@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 class ActionButton extends StatelessWidget {
+  /// Creates a material design action button.
   const ActionButton({
     super.key,
     this.onPressed,
@@ -9,11 +10,16 @@ class ActionButton extends StatelessWidget {
     this.closeFabOnTap = true,
   });
 
+  /// The callback that is called when the button is tapped
   final VoidCallback? onPressed;
+
+  /// The widget below this widget in the tree.
   final Widget child;
+
+  /// The background color of the button.
   final Color? color;
 
-  // this variable will be accessed and used by [ExpandableFab] widget
+  /// Indicates whether the fab should close when the button is tapped.
   final bool closeFabOnTap;
 
   @override

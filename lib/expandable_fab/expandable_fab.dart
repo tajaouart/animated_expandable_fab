@@ -3,18 +3,24 @@ import 'package:flutter/material.dart';
 
 import 'expanding_action_button.dart';
 
-@immutable
+// ExpandableFab is a stateful widget that allows creating an expandable Floating Action Button
+// which can contain multiple action buttons inside it.
 class ExpandableFab extends StatefulWidget {
   const ExpandableFab({
     super.key,
-    this.initialOpen,
+    // boolean variable to determine if the fab should be open or closed by default
+    this.initialOpen = false,
+    // the distance between the fab and the action buttons
     required this.distance,
+    // the list of action buttons to be added to the fab
     required this.children,
+    // the icon to be displayed when the fab is closed
     this.closeIcon,
+    // the icon to be displayed when the fab is open
     this.openIcon,
   });
 
-  final bool? initialOpen;
+  final bool initialOpen;
   final double distance;
   final List<ActionButton> children;
   final Widget? closeIcon;
@@ -33,8 +39,10 @@ class _ExpandableFabState extends State<ExpandableFab>
   @override
   void initState() {
     super.initState();
-    _open = widget.initialOpen ?? false;
+    // initializing the state of the fab
+    _open = widget.initialOpen;
     _controller = AnimationController(
+      // setting the initial value of the animation
       value: _open ? 1.0 : 0.0,
       duration: const Duration(milliseconds: 250),
       vsync: this,
@@ -46,12 +54,14 @@ class _ExpandableFabState extends State<ExpandableFab>
     );
   }
 
+  // dispose the animation controller when the widget is disposed
   @override
   void dispose() {
     _controller.dispose();
     super.dispose();
   }
 
+  // toggle the state of the fab when it is tapped
   void _toggle() {
     setState(() {
       _open = !_open;
@@ -63,6 +73,7 @@ class _ExpandableFabState extends State<ExpandableFab>
     });
   }
 
+  // the main build function
   @override
   Widget build(BuildContext context) {
     return SizedBox.expand(
@@ -78,6 +89,7 @@ class _ExpandableFabState extends State<ExpandableFab>
     );
   }
 
+  // the tap-to-close fab widget
   Widget _buildTapToCloseFab() {
     return SizedBox(
       width: 56.0,
@@ -91,11 +103,13 @@ class _ExpandableFabState extends State<ExpandableFab>
             onTap: _toggle,
             child: Padding(
               padding: const EdgeInsets.all(8.0),
-              child: widget.closeIcon ??
-                  Icon(
-                    Icons.close,
-                    color: Theme.of(context).primaryColor,
-                  ),
+              child: _open == false
+                  ? const SizedBox()
+                  : (widget.closeIcon ??
+                      Icon(
+                        Icons.close,
+                        color: Theme.of(context).primaryColor,
+                      )),
             ),
           ),
         ),
@@ -103,6 +117,7 @@ class _ExpandableFabState extends State<ExpandableFab>
     );
   }
 
+// builds the expanding action buttons
   List<Widget> _buildExpandingActionButtons() {
     final children = <Widget>[];
     final count = widget.children.length;
@@ -146,7 +161,9 @@ class _ExpandableFabState extends State<ExpandableFab>
           duration: const Duration(milliseconds: 250),
           child: FloatingActionButton(
             onPressed: _toggle,
-            child: widget.openIcon ?? const Icon(Icons.add),
+            child: _open
+                ? const SizedBox()
+                : (widget.openIcon ?? const Icon(Icons.add)),
           ),
         ),
       ),

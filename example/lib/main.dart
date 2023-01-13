@@ -36,7 +36,7 @@ class _ExampleExpandableFabState extends State<ExampleExpandableFab> {
       ),
       body: Center(child: Text(action)),
       floatingActionButton: ExpandableFab(
-        distance: 112.0,
+        distance: 100.0,
         closeIcon: const Icon(
           Icons.close,
           color: Colors.blue,

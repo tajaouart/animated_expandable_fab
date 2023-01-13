@@ -3,6 +3,7 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 
 class ExpandingActionButton extends StatelessWidget {
+  /// Creates an expanding action button.
   const ExpandingActionButton({
     super.key,
     required this.directionInDegrees,
@@ -12,10 +13,19 @@ class ExpandingActionButton extends StatelessWidget {
     this.onTap,
   });
 
+  /// The direction of the button's expansion in degrees.
   final double directionInDegrees;
+
+  /// The maximum distance the button should expand.
   final double maxDistance;
+
+  /// The animation that controls the button's expansion progress.
   final Animation<double> progress;
+
+  /// The widget below this widget in the tree.
   final Widget child;
+
+  /// The callback that is called when the button is tapped
   final VoidCallback? onTap;
 
   @override
