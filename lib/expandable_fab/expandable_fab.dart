@@ -10,11 +10,15 @@ class ExpandableFab extends StatefulWidget {
     this.initialOpen,
     required this.distance,
     required this.children,
+    this.closeIcon,
+    this.openIcon,
   });
 
   final bool? initialOpen;
   final double distance;
   final List<ActionButton> children;
+  final Widget? closeIcon;
+  final Widget? openIcon;
 
   @override
   State<ExpandableFab> createState() => _ExpandableFabState();
@@ -87,10 +91,11 @@ class _ExpandableFabState extends State<ExpandableFab>
             onTap: _toggle,
             child: Padding(
               padding: const EdgeInsets.all(8.0),
-              child: Icon(
-                Icons.close,
-                color: Theme.of(context).primaryColor,
-              ),
+              child: widget.closeIcon ??
+                  Icon(
+                    Icons.close,
+                    color: Theme.of(context).primaryColor,
+                  ),
             ),
           ),
         ),
@@ -139,7 +144,7 @@ class _ExpandableFabState extends State<ExpandableFab>
           duration: const Duration(milliseconds: 250),
           child: FloatingActionButton(
             onPressed: _toggle,
-            child: const Icon(Icons.create),
+            child: widget.openIcon ?? const Icon(Icons.add),
           ),
         ),
       ),
