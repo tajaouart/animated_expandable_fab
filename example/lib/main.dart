@@ -48,6 +48,7 @@ class _ExampleExpandableFabState extends State<ExampleExpandableFab> {
         children: [
           ActionButton(
             onPressed: () => selectItem(context, 0),
+            closeFabOnTap: true,
             child: const Icon(
               Icons.format_size,
               color: Colors.white,
@@ -55,6 +56,7 @@ class _ExampleExpandableFabState extends State<ExampleExpandableFab> {
           ),
           ActionButton(
             onPressed: () => selectItem(context, 1),
+            closeFabOnTap: true,
             child: const Icon(
               Icons.insert_photo,
               color: Colors.white,
@@ -62,6 +64,7 @@ class _ExampleExpandableFabState extends State<ExampleExpandableFab> {
           ),
           ActionButton(
             onPressed: () => selectItem(context, 2),
+            closeFabOnTap: true,
             child: const Icon(
               Icons.videocam,
               color: Colors.white,

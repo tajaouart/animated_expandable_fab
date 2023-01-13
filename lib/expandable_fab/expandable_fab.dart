@@ -117,7 +117,9 @@ class _ExpandableFabState extends State<ExpandableFab>
           progress: _expandAnimation,
           child: widget.children[i],
           onTap: () {
-            _toggle();
+            if (widget.children[i].closeFabOnTap) {
+              _toggle();
+            }
             widget.children[i].onPressed?.call();
           },
         ),

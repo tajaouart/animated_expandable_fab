@@ -6,11 +6,15 @@ class ActionButton extends StatelessWidget {
     this.onPressed,
     required this.child,
     this.color,
+    this.closeFabOnTap = true,
   });
 
   final VoidCallback? onPressed;
   final Widget child;
   final Color? color;
+
+  // this variable will be accessed and used by [ExpandableFab] widget
+  final bool closeFabOnTap;
 
   @override
   Widget build(BuildContext context) {
