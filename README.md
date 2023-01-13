@@ -2,6 +2,9 @@
 
 A Flutter package for easily creating animated expandable fabs.
 
+<img src="https://raw.githubusercontent.com/tajaouart/animated_expandable_fab/main/animated_expandable_fab.gif" height="600"/>
+
+
 ## Description
 
 Animated Expandable Fab is a package for creating beautiful and customizable expandable floating action buttons. This package provides an easy-to-use widget, `ExpandableFab`, which can be used to create expandable fabs with various animations, icons, and children.
