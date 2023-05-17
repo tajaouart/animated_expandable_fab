@@ -55,6 +55,7 @@ class _ExampleExpandableFabState extends State<ExampleExpandableFab> {
             ),
           ),
           ActionButton(
+            text: "Hello",
             onPressed: () => selectItem(context, 1),
             closeFabOnTap: true,
             child: const Icon(

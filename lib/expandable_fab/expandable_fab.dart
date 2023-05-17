@@ -18,6 +18,14 @@ class ExpandableFab extends StatefulWidget {
     this.closeIcon,
     // the icon to be displayed when the fab is open
     this.openIcon,
+    // the background color of the closed icon
+    this.closeIconBackgroundColor,
+    // the background color of the open icon
+    this.openIconBackgroundColor
+
+
+
+
   });
 
   final bool initialOpen;
@@ -25,6 +33,8 @@ class ExpandableFab extends StatefulWidget {
   final List<ActionButton> children;
   final Widget? closeIcon;
   final Widget? openIcon;
+  final Color? openIconBackgroundColor;
+  final Color? closeIconBackgroundColor;
 
   @override
   State<ExpandableFab> createState() => _ExpandableFabState();
@@ -91,30 +101,41 @@ class _ExpandableFabState extends State<ExpandableFab>
 
   // the tap-to-close fab widget
   Widget _buildTapToCloseFab() {
-    return SizedBox(
-      width: 56.0,
-      height: 56.0,
-      child: Center(
-        child: Material(
-          shape: const CircleBorder(),
-          clipBehavior: Clip.antiAlias,
-          elevation: 4.0,
-          child: InkWell(
-            onTap: _toggle,
-            child: Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: _open == false
-                  ? const SizedBox()
-                  : (widget.closeIcon ??
-                      Icon(
-                        Icons.close,
-                        color: Theme.of(context).primaryColor,
-                      )),
-            ),
-          ),
-        ),
+    return FloatingActionButton(
+      onPressed: _toggle,
+      backgroundColor: widget.closeIconBackgroundColor ?? Colors.white,
+      child: (widget.closeIcon ??
+        Icon(
+          Icons.close,
+          color: Theme.of(context).primaryColor,
+        )
       ),
     );
+    // return SizedBox(
+    //   width: 56.0,
+    //   height: 56.0,
+    //   child: Center(
+    //     child: Material(
+    //       color: widget.closeIconBackgroundColor,
+    //       shape: const CircleBorder(),
+    //       clipBehavior: Clip.antiAlias,
+    //       elevation: 4.0,
+    //       child: InkWell(
+    //         onTap: _toggle,
+    //         child: Padding(
+    //           padding: const EdgeInsets.all(8.0),
+    //           child: _open == false
+    //               ? const SizedBox()
+    //               : (widget.closeIcon ??
+    //                   Icon(
+    //                     Icons.close,
+    //                     color: Theme.of(context).primaryColor,
+    //                   )),
+    //         ),
+    //       ),
+    //     ),
+    //   ),
+    // );
   }
 
 // builds the expanding action buttons
@@ -160,6 +181,7 @@ class _ExpandableFabState extends State<ExpandableFab>
           curve: const Interval(0.25, 1.0, curve: Curves.easeInOut),
           duration: const Duration(milliseconds: 250),
           child: FloatingActionButton(
+            backgroundColor: widget.openIconBackgroundColor,
             onPressed: _toggle,
             child: _open
                 ? const SizedBox()
