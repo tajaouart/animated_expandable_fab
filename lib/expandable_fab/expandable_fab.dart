@@ -6,27 +6,26 @@ import 'expanding_action_button.dart';
 // ExpandableFab is a stateful widget that allows creating an expandable Floating Action Button
 // which can contain multiple action buttons inside it.
 class ExpandableFab extends StatefulWidget {
-  const ExpandableFab({
-    super.key,
-    // boolean variable to determine if the fab should be open or closed by default
-    this.initialOpen = false,
-    // the distance between the fab and the action buttons
-    required this.distance,
-    // the list of action buttons to be added to the fab
-    required this.children,
-    // the icon to be displayed when the fab is closed
-    this.closeIcon,
-    // the icon to be displayed when the fab is open
-    this.openIcon,
-    // the background color of the closed icon
-    this.closeIconBackgroundColor,
-    // the background color of the open icon
-    this.openIconBackgroundColor
-
-
-
-
-  });
+  const ExpandableFab(
+      {super.key,
+      // boolean variable to determine if the fab should be open or closed by default
+      this.initialOpen = false,
+      // the distance between the fab and the action buttons
+      required this.distance,
+      // the list of action buttons to be added to the fab
+      required this.children,
+      // the icon to be displayed when the fab is closed
+      this.closeIcon,
+      // the icon to be displayed when the fab is open
+      this.openIcon,
+      // the background color of the closed icon
+      this.closeIconBackgroundColor,
+      // the background color of the open icon
+      this.openIconBackgroundColor,
+      //Tag for first floating action button shown
+      this.heroTag1,
+      //Tag for second floating action button shown
+      this.heroTag2});
 
   final bool initialOpen;
   final double distance;
@@ -35,6 +34,8 @@ class ExpandableFab extends StatefulWidget {
   final Widget? openIcon;
   final Color? openIconBackgroundColor;
   final Color? closeIconBackgroundColor;
+  final Object? heroTag1;
+  final Object? heroTag2;
 
   @override
   State<ExpandableFab> createState() => _ExpandableFabState();
@@ -103,13 +104,13 @@ class _ExpandableFabState extends State<ExpandableFab>
   Widget _buildTapToCloseFab() {
     return FloatingActionButton(
       onPressed: _toggle,
+      heroTag: widget.heroTag1 ?? UniqueKey(),
       backgroundColor: widget.closeIconBackgroundColor ?? Colors.white,
       child: (widget.closeIcon ??
-        Icon(
-          Icons.close,
-          color: Theme.of(context).primaryColor,
-        )
-      ),
+          Icon(
+            Icons.close,
+            color: Theme.of(context).primaryColor,
+          )),
     );
     // return SizedBox(
     //   width: 56.0,
@@ -181,6 +182,7 @@ class _ExpandableFabState extends State<ExpandableFab>
           curve: const Interval(0.25, 1.0, curve: Curves.easeInOut),
           duration: const Duration(milliseconds: 250),
           child: FloatingActionButton(
+            heroTag: widget.heroTag2 ?? UniqueKey(),
             backgroundColor: widget.openIconBackgroundColor,
             onPressed: _toggle,
             child: _open
