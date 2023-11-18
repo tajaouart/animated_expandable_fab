@@ -18,15 +18,10 @@ class ExampleExpandableFab extends StatefulWidget {
 }
 
 class _ExampleExpandableFabState extends State<ExampleExpandableFab> {
-  final _actionTitles = ['Create Post', 'Upload Photo', 'Upload Video'];
+  final _titles = ['Create Post', 'Upload Photo', 'Upload Video'];
+  final _icons = [Icons.format_size, Icons.insert_photo, Icons.videocam];
 
   String action = 'Choose an action';
-
-  void selectItem(BuildContext context, int index) {
-    setState(() {
-      action = _actionTitles[index];
-    });
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -36,6 +31,10 @@ class _ExampleExpandableFabState extends State<ExampleExpandableFab> {
       ),
       body: Center(child: Text(action)),
       floatingActionButton: ExpandableFab(
+        closeBackgroundColor: Colors.white,
+        closeShadowColor: Colors.grey,
+        closeElevation: 5,
+        openElevation: 4,
         distance: 100.0,
         closeIcon: const Icon(
           Icons.close,
@@ -45,32 +44,28 @@ class _ExampleExpandableFabState extends State<ExampleExpandableFab> {
           Icons.add,
           color: Colors.white,
         ),
-        children: [
-          ActionButton(
-            onPressed: () => selectItem(context, 0),
+        children: List.generate(_titles.length, (index) {
+          return ActionButton(
+            onPressed: () => setState(() {
+              action = _titles[index];
+            }),
             closeFabOnTap: true,
-            child: const Icon(
-              Icons.format_size,
+            text: Padding(
+              padding: const EdgeInsets.only(bottom: 8.0, right: 8.0),
+              child: Text(
+                _titles[index],
+                style: const TextStyle(
+                  color: Colors.blue,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ),
+            icon: Icon(
+              _icons[index],
               color: Colors.white,
             ),
-          ),
-          ActionButton(
-            onPressed: () => selectItem(context, 1),
-            closeFabOnTap: true,
-            child: const Icon(
-              Icons.insert_photo,
-              color: Colors.white,
-            ),
-          ),
-          ActionButton(
-            onPressed: () => selectItem(context, 2),
-            closeFabOnTap: true,
-            child: const Icon(
-              Icons.videocam,
-              color: Colors.white,
-            ),
-          ),
-        ],
+          );
+        }),
       ),
     );
   }

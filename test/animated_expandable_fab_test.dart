@@ -57,7 +57,7 @@ void main() {
               children: [
                 ActionButton(
                   closeFabOnTap: true,
-                  child: Text('Test'),
+                  icon: Text('Test'),
                 ),
               ],
             ),
@@ -93,10 +93,10 @@ void main() {
 
   testWidgets("ExpandableFab children", (WidgetTester tester) async {
     const child1 = ActionButton(
-      child: Text('Child 1'),
+      icon: Text('Child 1'),
     );
     const child2 = ActionButton(
-      child: Text('Child 2'),
+      icon: Text('Child 2'),
     );
 
     await tester.pumpWidget(
@@ -138,7 +138,7 @@ void main() {
                 ActionButton(
                   closeFabOnTap: false,
                   key: const Key('Child1'),
-                  child: const Text('Test'),
+                  icon: const Text('Test'),
                   onPressed: () {
                     onPressedCalled = true;
                   },
@@ -151,7 +151,7 @@ void main() {
     );
 
     // open fab
-    await tester.tap(find.byIcon(Icons.add));
+    await tester.tap(find.byType(ActionButton));
     await tester.pumpAndSettle(const Duration(seconds: 1));
 
     // tap on child
@@ -182,7 +182,7 @@ void main() {
                 ActionButton(
                   closeFabOnTap: true,
                   key: const Key('Child1'),
-                  child: const Text('Test'),
+                  icon: const Text('Test'),
                   onPressed: () {
                     onPressedCalled = true;
                   },
@@ -195,7 +195,7 @@ void main() {
     );
 
     // open fab
-    await tester.tap(find.byIcon(Icons.add));
+    await tester.tap(find.byType(ActionButton));
     await tester.pumpAndSettle(const Duration(seconds: 1));
 
     // tap on child

@@ -9,7 +9,7 @@ void main() {
     bool onTapCalled = false;
 
     final actionButton = ActionButton(
-      child: const Text('Test'),
+      icon: const Text('Test'),
       onPressed: () {
         onPressedCalled = true;
       },
