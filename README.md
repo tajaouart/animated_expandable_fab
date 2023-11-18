@@ -22,7 +22,7 @@ To use this package, add `animated_expandable_fab` as a dependency in your `pubs
 
 ```dart
 dependencies:
-animated_expandable_fab: ^1.0.0
+animated_expandable_fab: any
 ```
 
 ## Usage

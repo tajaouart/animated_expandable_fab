@@ -1,6 +1,6 @@
 name: animated_expandable_fab
 description: A Flutter package that provides an animated and expandable Floating Action Button. The package allows you to create an animated FAB that expands when tapped and collapses when tapped again.
-version: 0.0.1
+version: 0.0.2
 homepage: https://github.com/tajaouart/animated_expandable_fab
 
 environment:
